@@ -1,0 +1,78 @@
+remotes::install_github("wilkelab/cowplot")
+install.packages("colorspace", repos = "http://R-Forge.R-project.org")
+
+remotes::install_github("clauswilke/colorblindr")
+
+library(ggplot2)
+iris <- ggplot(
+  data = iris,
+  mapping = aes(x = Sepal.Length,
+                y = Sepal.Width,
+                colour = Species,
+                shape = Species,
+                show.legend = FALSE)) +
+  geom_point(size = 4) +
+  theme_bw() +
+  theme(
+    text = element_text(size = 12,
+                        family = "Arial")
+  )
+
+iris
+
+# create protan palette
+
+iris_protan <- edit_colors(iris, protan, sev = 5)
+plot(iris_protan)
+
+# create deutan palette
+
+iris_deutan <- edit_colors(iris, deutan, sev = 5)
+plot(iris_deutan)
+
+# create tritan palette
+
+iris_tritan <- edit_colors(iris, tritan, sev = 5)
+plot(iris_tritan)
+
+# create monochrome palette
+iris_desaturate <- edit_colors(iris, desaturate, sev = 5)
+plot(iris_desaturate)
+
+iris_OkabeIto <- ggplot(
+  data = iris,
+  mapping = aes(x = Sepal.Length,
+                y = Sepal.Width,
+                colour = Species,
+                shape = Species,
+                show.legend = FALSE)) +
+  geom_point(size = 4,
+             alpha = 1) +
+  scale_color_OkabeIto(order = c(5, 2, 6)) +
+  theme_bw() +
+  theme(
+    text = element_text(size = 12,
+                        family = "Arial")
+  )
+
+plot(iris_OkabeIto)
+
+# Look at the palette
+
+scales::show_col(palette.colors(palette = "Okabe-Ito"))
+
+palette.colors(palette = "Okabe-Ito")
+
+library(colorblindr)
+cvd_grid(fig)
+
+view_cvd(fig) # starts the interactive app
+
+fig2 <- ggplot(iris, aes(Sepal.Length, fill = Species)) +
+  geom_density(alpha = 0.7) + scale_fill_OkabeIto()
+
+fig2
+
+cvd_grid(fig2)
+
+view_cvd(fig2)

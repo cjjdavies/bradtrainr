@@ -1,0 +1,38 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# bradtrainr
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of bradtrainr is to provide training in the use of R for analysis and visualisation of data.
+
+## Installation
+
+You can install the development version of bradtrainr from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("cjjdavies/bradtrainr")
+```
+To run this tutorial, type the following in the console window:
+
+``` r
+learnr:: run_tutorial("lesson1", package = "bradtrainr")
+```
+The tutorial may also be run from the Tutorial tab in the Environment pane (top right panel).
+
+This is a development version of the package.

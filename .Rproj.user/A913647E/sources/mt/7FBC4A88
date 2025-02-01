@@ -1,0 +1,27 @@
+{
+    "id": "7FBC4A88",
+    "path": "~/bradtrainr/inst/tutorials/lesson1/lesson1.Rmd",
+    "project_path": "inst/tutorials/lesson1/lesson1.Rmd",
+    "type": "r_markdown",
+    "hash": "2354071232",
+    "contents": "",
+    "dirty": false,
+    "created": 1719907264093.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "500,86",
+        "scrollLine": "491",
+        "last_setup_crc32": "82162a17487475d1"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1720175619,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1720175619084,
+    "read_only": false,
+    "read_only_alternatives": []
+}

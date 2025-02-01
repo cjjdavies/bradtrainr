@@ -1,0 +1,223 @@
+??iris
+# Checks to see if pacman is installed. If no, it will install.
+if(!require(pacman))install.packages("pacman")
+pacman::p_load(learnr,
+ggplot2,
+extrafont)
+knitr::opts_chunk$set(echo = FALSE)
+# Install and load Lato font
+# font_import()
+# fonts()
+tail(iris)
+ggplot(
+data = iris,
+mapping = aes(x = Sepal.Length,
+y = Sepal.Width,
+colour = Species,
+shape = Species,
+size = 4)) +
+geom_point()
+ggplot(
+data = iris,
+mapping = aes(x = Sepal.Length,
+y = Sepal.Width,
+colour = Species,
+shape = Species,
+show.legend = FALSE)) +
+geom_point(size = 4) +
+labs(title = "Differences in floral attributes of three *Iris* species",
+x = "Sepal Length (cm)",
+y = "Sepal Width (cm)") +
+theme_bw()
+ggplot(
+data = iris,
+mapping = aes(x = Sepal.Length,
+y = Sepal.Width,
+colour = Species,
+shape = Species,
+show.legend = FALSE)) +
+geom_point(size = 4) +
+labs(title = "Differences in floral attributes of three *Iris* species",
+x = "Sepal Length (cm)",
+y = "Sepal Width (cm)") +
+theme_bw()
+ggplot(
+data = iris,
+mapping = aes(x = Sepal.Length,
+y = Sepal.Width,
+colour = Species,
+shape = Species,
+show.legend = FALSE)) +
+geom_point(size = 4) +
+labs(title = "Differences in floral attributes of three *Iris* species",
+x = "Sepal Length (cm)",
+y = "Sepal Width (cm)") +
+theme_bw() +
+theme(
+text = element_text(size = 14,
+family = "Arial")
+)
+ggplot(
+data = iris,
+mapping = aes(x = Sepal.Length,
+y = Sepal.Width,
+colour = Species,
+shape = Species,
+show.legend = FALSE)) +
+geom_point(size = 4) +
+labs(title = "Differences in floral attributes of three *Iris* species",
+x = "Sepal Length (cm)",
+y = "Sepal Width (cm)") +
+theme_bw() +
+theme(
+text = element_text(size = 14,
+family = "Calibri")
+)
+ggplot(
+data = iris,
+mapping = aes(x = Sepal.Length,
+y = Sepal.Width,
+colour = Species,
+shape = Species,
+show.legend = FALSE)) +
+geom_point(size = 4) +
+labs(title = "Differences in floral attributes of three *Iris* species",
+x = "Sepal Length (cm)",
+y = "Sepal Width (cm)") +
+theme_bw() +
+theme(
+text = element_text(size = 14,
+family = "Courier")
+)
+ggplot(
+data = iris,
+mapping = aes(x = Sepal.Length,
+y = Sepal.Width,
+colour = Species,
+shape = Species,
+show.legend = FALSE)) +
+geom_point(size = 4) +
+labs(title = "Differences in floral attributes of three *Iris* species",
+x = "Sepal Length (cm)",
+y = "Sepal Width (cm)") +
+theme_bw() +
+theme(
+text = element_text(size = 10,
+family = "Courier")
+)
+ggplot(
+data = iris,
+mapping = aes(x = Sepal.Length,
+y = Sepal.Width,
+colour = Species,
+shape = Species,)) +
+geom_point(size = 4,
+show.legend = FALSE)
+ggplot(
+data = iris,
+mapping = aes(x = Sepal.Length,
+y = Sepal.Width,
+colour = Species,
+shape = Species,
+show.legend = FALSE)) +
+geom_point(size = 4) +
+theme_bw() +
+theme(
+text = element_text(size = 10,
+family = "Courier")
+)
+library(ggplot2)
+ggplot(
+data = iris,
+mapping = aes(x = Sepal.Length,
+y = Sepal.Width,
+colour = Species,
+shape = Species,
+show.legend = FALSE)) +
+geom_point(size = 4) +
+theme_bw() +
+theme(
+text = element_text(size = 10,
+family = "Courier")
+)
+ggplot(
+data = iris,
+mapping = aes(x = Sepal.Length,
+y = Sepal.Width,
+colour = Species,
+shape = Species,
+show.legend = FALSE)) +
+geom_point(size = 4) +
+theme_bw() +
+theme(
+text = element_text(size = 12,
+family = "Courier")
+)
+ggplot(
+data = iris,
+mapping = aes(x = Sepal.Length,
+y = Sepal.Width,
+colour = Species,
+shape = Species,
+show.legend = FALSE)) +
+geom_point(size = 4) +
+theme_bw() +
+theme(
+text = element_text(size = 12,
+family = "Arial")
+)
+library(cowplot)
+library(colorblindr)
+iris_protan <- ggplot(
+data = iris,
+mapping = aes(x = Sepal.Length,
+y = Sepal.Width,
+colour = Species,
+shape = Species,
+show.legend = FALSE)) +
+geom_point(size = 4) +
+theme_bw() +
+theme(
+text = element_text(size = 10,
+family = "Roboto")
+)
+iris <- ggplot(
+data = iris,
+mapping = aes(x = Sepal.Length,
+y = Sepal.Width,
+colour = Species,
+shape = Species,
+show.legend = FALSE)) +
+geom_point(size = 4) +
+theme_bw() +
+theme(
+text = element_text(size = 10,
+family = "Roboto")
+)
+iris
+iris <- ggplot(
+data = iris,
+mapping = aes(x = Sepal.Length,
+y = Sepal.Width,
+colour = Species,
+shape = Species,
+show.legend = FALSE)) +
+geom_point(size = 4) +
+theme_bw() +
+theme(
+text = element_text(size = 12,
+family = "Roboto")
+)
+iris <- ggplot(
+data = iris,
+mapping = aes(x = Sepal.Length,
+y = Sepal.Width,
+colour = Species,
+shape = Species,
+show.legend = FALSE)) +
+geom_point(size = 4) +
+theme_bw() +
+theme(
+text = element_text(size = 12,
+family = "Arial")
+)

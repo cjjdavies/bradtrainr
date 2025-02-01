@@ -1,0 +1,549 @@
+---
+title: "Creating a scatterplot"
+output:
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+    df_print: default
+    css: css/style.css
+runtime: shiny_prerendered
+description: >
+  Learn about the base data types in R. Explore R's data frames, and learn how
+  to interact with data frames and their columns.
+---
+
+```{r setup, include=FALSE}
+# Checks to see if pacman is installed. If no, it will install.
+if(!require(pacman))install.packages("pacman")
+
+pacman::p_load(learnr,
+               ggplot2,
+               extrafont)
+knitr::opts_chunk$set(echo = FALSE)
+
+# Install and load Lato font
+# font_import()
+# fonts()
+```
+
+<img src="images/NIHR_Bradford_HDRC_RGB_colour.png" width="300"/>
+
+# R tutorial by Bradford Council HDRC Data Team
+
+## Introduction
+
+Welcome to this <code>R</code> course on getting started with data and visualisation.
+
+This is a gentle introduction to working with data in <code>R</code> to produce plots like the one below.
+
+```{r iris-final, include=TRUE}
+ggplot(
+  data = iris,
+  mapping = aes(x = Sepal.Length,
+                y = Sepal.Width,
+                colour = Species,
+                shape = Species,
+                show.legend = FALSE)) +
+  geom_point(size = 4) +
+  labs(title = "Differences in sepal sizes of\nthree Iris species",
+       x = "Sepal Length (cm)",
+       y = "Sepal Width (cm)") +
+  theme_bw() +
+  theme(
+    text = element_text(size=14,  family="Arial")
+  )
+
+```
+
+There are exercises for you to complete which can be run in 'code chunks' like the one below. A code chunk is one or more lines of code that are grouped together as a 'chunk' and can be 'run'.
+
+To run the code and see the output, select the blue 'Run Code' button on the right of the box. You should see a box with the phrase "Hello, World!" appear below the code chunk.
+
+```{r example, exercise=TRUE}
+print("Hello, World!")
+```
+
+Important words will be highlighted in **bold** text, with definitions provided along the way to aid your learning.
+
+The course will automatically save your progress when you close the program so that you do not have to repeat tasks you have already complete, and you can start over at any time by selecting the 'Start Over' option on the left side menu.
+
+You can move forward or backward through the course by selecting the 'Previous Topic' or 'Next Topic' buttons below each section.
+
+Let's get started!
+
+## Learning objectives
+
+1. Load one of <code>R</code>'s built-in datasets
+
+2. Inspect the data and learn some terms to describe it
+
+3. Try some of <code>R</code>'s plotting functions
+
+<code>R</code> has several built-in datasets that can be used for practice. In this session, we will use the <code>iris</code> dataset containing measurements of the flower parts, petals and sepals, of three different *Iris* species.
+
+The image below shows the three species in the data and the flower parts used for measurements. The original research from which the data are taken, was published by a famous statistician, R A Fisher, in 1936. If you wish to read more, [click this link to access the paper](https://onlinelibrary.wiley.com/doi/epdf/10.1111/j.1469-1809.1936.tb02137.x).
+
+![Petals and sepals of *Iris setosa*, *Iris versicolor* and *Iris virginica*](images/iris.png){width="100%"}
+[Image obtained from Yong Cui, 2020](https://towardsdatascience.com/the-iris-dataset-a-little-bit-of-history-and-biology-fb4812f5a7b5)
+
+The <code>iris</code> data are used in many examples you will encounter as you learn more about <code>R</code>.
+
+The data can be displayed in a format like a table, called a **data frame**. **Data frames** are important objects in R and we will learn more about them as we start to work with them. For now, let's explore the <code>iris</code> data.
+
+## Loading a dataset
+
+### Exercise:
+
+*Here is a simple exercise to view the built-in <code>iris</code> data.*
+
+Click the 'Run code' button on the right side of the chunk to run the code and see the data.
+
+```{r load-iris, exercise=TRUE}
+iris
+```
+
+The dataset has 150 cases (rows) and 5 variables (columns).
+
+You might see that there are six columns in the data. The first column shows the row number for each 'case', which is typically not included in analysis. The actual data columns are named Sepal.Length, Sepal.Width, Petal.Length, Petal.Width, and Species.
+
+Notice that the first row of data is labelled as number 1. The row containing the column titles is not counted as a row.
+
+In some programming languages the first row of data starts at 0 (zero), which is an important thing to remember if you have experience of coding in other languages that start counting at 0, or decide to learn others once you feel confident working with <code>R</code>.
+
+## Inspecting the data
+
+The <code>iris</code> dataset has 150 rows that can be easily viewed in the output pane below the code chunk, but what if your dataset has 1,000 rows, 10,000 rows, or more, with many more columns?
+
+It is not convenient to show all the data this way, and at the beginning of a piece of analysis it is often helpful to see a small subset of the data.
+
+<code>R</code> has many useful commands (or **functions**) to help with this.
+
+### Exercise
+
+One such **function** is <code>head</code>, which shows the first 6 rows of a dataset, and the column headings.
+
+To use this built-in **function**, type its name and enclose the name of the dataset in parentheses.
+
+This has been done for you below, and you can run the code to see the output.
+
+```{r head-iris, exercise=TRUE}
+head(iris)
+```
+
+It is the same information as you saw if you ran the code in the previous screen, but just the top 6 lines - just enough to begin to see what the data look like.
+
+Ignoring the first column (with the row numbers), the next four columns show measurements in centimeters of the **variables** sepal length and width, and petal length and width for 50 flowers from each of 3 species of iris.
+
+The columns for sepal length and width, and petal length and width are **numeric** data containing numbers with a decimal point. The species column is **categorical**, with three different categories.
+
+### Exercise
+
+There are other built-in functions that can be used to inspect your data:
+
+- <code>tail</code> will show the last 6 lines of your data (<code>head</code> shows the first 6 lines)
+
+- <code>names</code> will show you all the column names in your dataset
+
+- <code>dim</code> will show you the dimensions of your data as the number of rows and the number columns
+
+- <code>summary</code> will provide basic (summary) statistics for data that are stored as numbers
+
+The first one, <code>tail</code>, has been done for you so you can click the "Run Code" button to see the output.
+
+Try running each of the other functions with the <code>iris</code> dataset to see what the outputs look like.
+
+
+```{r inspecting-iris, exercise=TRUE}
+tail(iris)
+```
+
+With the <code>summary</code> function, the first four columns will show descriptive statistics for each of the **variables**.
+
+
+
+The 1st and 3rd Quartiles are values at the 25% and 75% points respectively.
+
+For example, if you look at the summary data for Sepal.Length, the 1st Quartile value is 5.100, which means that 25% of all sepal lengths are below 5.1 cm; the 3rd Quartile value is 6.400, which means that 75% of all sepal lengths are below 6.4 cm.
+
+The Median value (which is also the 2nd Quartile!) is the value exactly in the middle of the range, which for sepal length is 5.8 cm.
+
+The Mean value, or average, is the total of all the lengths added together divided by the total number of measurements taken, which is 150 (as there are 150 rows in the data). The mean length is 5.843 cm.
+
+The Species column shows the three species for which measurements have been taken, and the total number of measurements per species, which is 50.
+
+## Visualising the data
+
+Just by looking at the data summaries it is not obvious if there is a difference in the sizes of sepals and petals between each of the three *Iris* species.
+
+Now, let's create a simple scatter plot to visualize the relationship between the Sepal Length and Sepal Width of the iris flowers to start, using the package <code>ggplot2</code>, which has already been installed.
+
+Scatterplots are useful where you have two **numeric variables** and you want to see if they are related in some way by observing a pattern. One set of **variables** is plotted on the horizontal x-axis, and the other set on the vertical y-axis.
+
+Run the code below to have a quick look at a basic scatter plot.
+
+```{r scatterplot, exercise=TRUE}
+ggplot(
+  data = iris,
+  mapping = aes(x = Sepal.Length,
+                y = Sepal.Width)) +
+  geom_point()
+```
+
+Let's break down the code above to find out what is happening.
+
+<code>ggplot</code> calls the function for creating a plot.
+
+<code>data = iris</code> tells <code>R</code> which dataset to use, followed by a comma at the end of the line.
+
+<code>mapping = aes(x = Sepal.Length,
+                    y = Sepal.Width)</code> provides instructions for creating the plot **aesthetics**. Here the variables for creating the scatter plot are specified.
+
+<code>geom_point()</code> tells <code>R</code> that we want to use points to represent each pair of variables in the dataset.
+
+<code>ggplot</code> uses **layers** to create plots, which means you can control many plot features. The way it does this is with the plus ('+') symbol. We will see other types of **layers** later in this course.
+
+Are you able to see whether the three species are different based on their sepal lengths and widths?
+
+It is ok if you can't as we don't know which points belong to which species based on the current plot. In the next section we will tweak the scatter plot to make it easier to identify each species.
+
+## Improving the scatter plot
+
+When you run the code chunk below you will see that the scatterplot is the same as the one created in the previous section. We are going to change the **aesthetics** of the points using the <code>aes</code> function. Currently there are two **attributes** inside the <code>aes</code> function: variables assigned to the x-axis (Sepal.Length) and the y-axis (Sepal.Width).
+
+```{r scatterplot2, exercise=TRUE}
+ggplot(
+  data = iris,
+  mapping = aes(x = Sepal.Length,
+                y = Sepal.Width)) +
+  geom_point()
+```
+
+### Example 1
+
+To change the colours of the points, we use the <code>colour</code> argument, as shown below, and specify the colours by Species.
+
+```{r scatterplot3, exercise=TRUE}
+ggplot(
+  data = iris,
+  mapping = aes(x = Sepal.Length,
+                y = Sepal.Width,
+                colour = Species)) +
+  geom_point()
+```
+
+Notice the difference between the two plots. The points now have colours according to species and a **legend** has been added to the right side of the plot showing the colours used for each species.
+
+### Exercise 1
+
+The shape and size of the points can also be changed, using the <code>shape</code> argument for shapes with the 'Species' variable, and <code>size</code> for size.
+
+See if you can alter the code chunk below to change the shape of the points for each species.
+
+Then have a go at changing the size of the points. Set size = 4 and notice the change. Try different numbers.
+
+If you are stuck, use the 'Hints' button at the top of the code chunk to see two hints, and the final solution.
+
+```{r shape, exercise=TRUE}
+ggplot(
+  data = iris,
+  mapping = aes(x = Sepal.Length,
+                y = Sepal.Width,
+                colour = Species)) +
+  geom_point()
+```
+
+
+```{r shape-hint-1}
+ggplot(
+  data = iris,
+  mapping = aes(x = Sepal.Length,
+                y = Sepal.Width,
+                colour = Species,
+                shape = Species)) +
+  geom_point()
+```
+
+
+```{r shape-hint-2}
+ggplot(
+  data = iris,
+  mapping = aes(x = Sepal.Length,
+                y = Sepal.Width,
+                colour = Species,
+                shape = Species,
+                size = )) +
+  geom_point()
+```
+
+
+```{r shape-solution, exercise.reveal_solution = TRUE}
+ggplot(
+  data = iris,
+  mapping = aes(x = Sepal.Length,
+                y = Sepal.Width,
+                colour = Species,
+                shape = Species,
+                size = 4)) +
+  geom_point()
+```
+
+Based on the sepal widths and lengths, you may be able to detect a group of *Iris setosa* (pink circles), with the two other species, *Iris versicolor* (green triangles) and *Iris virginica* (blue squares) overlapping.
+
+### Exercise 2
+
+Try using the other variables of petal length and petal width for the x and y co-ordinates to see if you can identify one or more distinct clusters. Use the code chunk below to type your own code and then answer the quiz question below to check your answer.
+
+Don't forget to use the 'Hints' button if you get stuck. There are 3 hints and the final solution.
+
+```{r petals, exercise.lines = 10, exercise = TRUE}
+
+```
+
+
+```{r petals-hint-1}
+ggplot(
+  data = iris,
+  mapping = aes( 
+                 
+                ))
+```
+
+
+```{r petals-hint-2}
+ggplot(
+  data = iris,
+  mapping = aes(x = Petal.Length,
+                y = Petal.Width
+                )) +
+  geom_point()
+```
+
+
+```{r petals-hint-3}
+ggplot(
+  data = iris,
+  mapping = aes(x = Petal.Length,
+                y = Petal.Width,
+                colour = Species)) +
+  geom_point()
+```
+
+
+```{r petals-solution, exercise.reveal_solution = TRUE}
+ggplot(
+  data = iris,
+  mapping = aes(x = Petal.Length,
+                y = Petal.Width,
+                colour = Species,
+                shape = Species,
+                size = 4)) +
+  geom_point()
+```
+
+
+```{r petalquiz}
+quiz(
+  question("Which *Iris* species is in a group by itself?",
+    answer("setosa", correct = TRUE),
+    answer("versicolor"),
+    answer("virginica")
+  ))
+```
+
+## Finishing the plot
+
+There are still some things we can do to make the plot look nicer. If you followed the tutorial steps you might have noticed a second legend appearing on the chart with the number 4. If not, run the code chunk below and you will see two legends appearing to the right of the scatter plot.
+
+
+```{r scatterplot4, exercise = TRUE}
+ggplot(
+  data = iris,
+  mapping = aes(x = Sepal.Length,
+                y = Sepal.Width,
+                colour = Species,
+                shape = Species,
+                size = 4)) +
+  geom_point()
+```
+
+### Exercise 1
+
+- Removing the additional legend that has appeared with the number 4
+
+- Increasing the size of the text and symbols in the legend we want to keep
+
+To remove the extra legend from the right of the plot, the solution is to move the size aesthetic from the main <code>aes</code> parameter and add it to the <code>geom_point</code> function.
+
+At the same time, the argument <code>show.legend = FALSE</code> is added to the <code>aes</code> attributes.
+
+Try moving the <code>show.legend = FALSE</code> to the <code>geom_point</code> function and see what happens to your plot.
+
+Try the 'Solution' button if you get stuck.
+
+```{r iris-legend, exercise = TRUE}
+ggplot(
+  data = iris,
+  mapping = aes(x = Sepal.Length,
+                y = Sepal.Width,
+                colour = Species,
+                shape = Species,
+                show.legend = FALSE)) +
+  geom_point(size = 4)
+
+```
+
+
+```{r iris-legend-solution, exercise.reveal.solution = TRUE}
+ggplot(
+  data = iris,
+  mapping = aes(x = Sepal.Length,
+                y = Sepal.Width,
+                colour = Species,
+                shape = Species)) +
+  geom_point(size = 4,
+             show.legend = FALSE)
+```
+
+### Exercise 2
+
+The next two things to do are:
+
+- Tidying the x and y axis labels
+
+- Adding a title
+
+Both of these things can be done very easily by changing the plot labels using the <code>labs</code> function.
+
+The attributes to change are <code>title</code>, <code>x</code> and <code>y</code>. It is good practice to add the units of measurement to the x- and y- axis labels, which in this case is centimeters (cm).
+
+To use it, an extra **layer** for labels is added to the code with a plus ('+') sign. See the code below and add some labels of your own.
+
+```{r iris-labels, exercise = TRUE}
+ggplot(
+  data = iris,
+  mapping = aes(x = Sepal.Length,
+                y = Sepal.Width,
+                colour = Species,
+                shape = Species,
+                show.legend = FALSE)) +
+  geom_point(size = 4) +
+  labs(title = "add a title here",
+       x = "x-axis label here",
+       y = "y-axis label here")
+
+```
+
+### Exercise 3
+
+Just to demonstrate some of the additional customisations available with <code>ggplot</code>, we are going to make a couple more changes:
+
+- Removing the background
+
+- Using a custom font and changing the font size
+
+For this, <code>ggplot2</code> has a **theme** system that controls the look and styling of a plot.
+
+In the same way as for <code>geom_point</code> and <code>labs</code>, the <code>theme</code> is a **layer**, specified with a plus ('+') symbol.
+
+Many different **themes** are available to use. A simple one to start with is <code>theme_bw()</code>. This removes the basic formatting of the plot. Run the code below to see how it works.
+
+```{r iris-final1, exercise = TRUE}
+ggplot(
+  data = iris,
+  mapping = aes(x = Sepal.Length,
+                y = Sepal.Width,
+                colour = Species,
+                shape = Species,
+                show.legend = FALSE)) +
+  geom_point(size = 4) +
+  labs(title = "Differences in floral attributes of three Iris species",
+       x = "Sepal Length (cm)",
+       y = "Sepal Width (cm)") +
+  theme_bw()
+
+```
+
+The grey background has been removed and there is now a border around the plot. As you progress in your knowledge of <code>ggplot</code> you can modify many of these features with different themes.
+
+Let's have a go at changing the font type to "Courier", and the font size to 10.
+
+This can be achieved by adding an additional <code>theme</code> layer and changing the <code>text</code> attribute - see the example below.
+
+
+```{r iris-final2, exercise = TRUE}
+ggplot(
+  data = iris,
+  mapping = aes(x = Sepal.Length,
+                y = Sepal.Width,
+                colour = Species,
+                shape = Species,
+                show.legend = FALSE)) +
+  geom_point(size = 4) +
+  labs(title = "Differences in floral attributes of three Iris species",
+       x = "Sepal Length (cm)",
+       y = "Sepal Width (cm)") +
+  theme_bw() +
+  theme(
+    text = element_text(size = 10,
+                        family = "Courier")
+  )
+
+```
+
+Try changing the font and font size. <code>R</code> will be able to use many system fonts installed on your device. You can also add more fonts yourself, but this can be a bit tricky and is not covered in this tutorial.
+
+## Congratulations!
+
+Well done for reaching the end of this tutorial. We have covered several important topics and worked through some code.
+
+The best way to improve is to keep practicing the things you have learned and repeat sections to become more familiar with the terms and structure of the code. A glossary of key words is available at the end of the quiz.
+
+You should also be able to use this code in RStudio if you would like to try it there.
+
+To finish off, a final quiz to check your learning:
+
+
+```{r quiz2}
+quiz(
+  question("Which package has been used in this tutorial for creating plots?",
+    answer("base"),
+    answer("stats"),
+    answer("ggplot2", correct = TRUE),
+    answer("codetools")
+  ),
+  question("Which attribute is used to change the size of a point",
+    answer("size", correct = TRUE),
+    answer("mapping"),
+    answer("shape"),
+    answer("colour")
+  ),
+  question("Which two functions can be used to quickly inspect a dataset and its variables?",
+           answer("aes"),
+           answer("head", correct = TRUE),
+           answer("dim", correct = TRUE),
+           answer("theme")
+           )
+)
+```
+
+### Glossary of important terms
+
+**Aesthetics** - parameters you can change that affect the appearance of a plot, such as colour, shape, size
+
+**Attributes** - additional parameters in functions that can be used to modify datasets and plots, for example chart titles
+
+**Categorical** - data that are organised into groups (or categories) based on qualitative characterstics, such as *Iris* species
+
+**Data frame** - data displayed in a format like a table
+
+**Function** - a set of instructions that or commands that perform a specific task on a dataset or plot
+
+**Layers** - in <code>ggplot</code>, the attributes and aesthetics can be changed with the use of layers, such as <code>labs</code>
+
+**Legend** - a guide on a chart to help a viewer understand more complicated plots, such as the different clusters of *Iris* species
+
+**Numeric** - a type of data that is expressed as a number or group of numbers
+
+**Theme** - <code>ggplot</code> options for customising the appearance of a plot, such as fonts and background colour
+
+**Variables** - a characteristic of interest that you want to measure or analyse, such as the sepal and petal sizes in the *Iris* dataset

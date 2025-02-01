@@ -1,0 +1,31 @@
+Package: bradtrainr
+Title: Bradford HDRC R Introductory Training Course
+Version: 0.1.2
+Authors@R: 
+    c(person(
+    "Chantel", "Davies",
+    email = "chantel.davies@ebradford.gov.uk",
+    role = c("aut", "cre"),
+    comment = c(ORCID = "0000-0003-1511-4775D")),
+    person(
+    "Olasehinde", "Shobande",
+    email = "olasehinde.shobande@bradford.gov.uk",
+    role = "aut"
+    ),
+    person(
+    "Caroline", "Tait",
+    email = "caroline.tait@bradford.gov.uk",
+    role = "ctb"
+    ))
+Description: An introduction to basic data visualisation with 'ggplot2' using the built-in Iris dataset.
+    The course assumes no prior knowledge of R code.
+    Version 0.1.2 includes accessibility tips.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Suggests:
+Imports: 
+    ggplot2,
+    learnr
+    

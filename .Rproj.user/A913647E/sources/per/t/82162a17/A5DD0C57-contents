@@ -1,0 +1,64 @@
+html {
+  --primary-colour: #193E72;
+  --secondary-colour: #EA5D4E;
+  --main-font: 'Lato', sans-serif;
+  --fontweight-light: 300;
+  --fontweight-normal: 400;
+  --fontweight-bold: 600;
+  font-size: 62.5%;
+}
+
+body {
+  font-family: var(--main-font);
+  font-size: 1.6rem;
+  color: black;
+  line-height: 1rem;
+}
+
+header {
+    font-size: 2rem;
+}
+
+section {
+    font-size: 2.5rem;
+}
+
+footer {
+    font-size: 2.8rem;
+}
+
+.topicsList .topic{
+    line-height: 40px;
+    font-size: 15px;
+    color: black;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-size: 2px 80px;
+    background-position: left 100%;
+        background-position-y: 100%;
+    background-image: url(images/topicProgress.png);
+    border-bottom: 1px solid #EA5D4E;
+    -webkit-transition-property: background-position;
+    transition-property: background-position;
+    -webkit-transition-duration: 0.25s;
+    transition-duration: 0.25s;
+}
+
+
+h1, h2, h3, h4 {
+  color: var(--primary-colour);
+  font-family: var(--main-font);
+  font-weight: var(--fontweight-bold);
+}
+
+h1 {
+  font-size: 1.4rem;
+}
+
+img {
+  margin: 10px 0 5px 0;
+}
+
+code {
+  font-weight: var(--fontweight-bold);
+}
