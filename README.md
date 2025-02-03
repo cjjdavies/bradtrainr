@@ -1,31 +1,11 @@
+# Give Up GitHub
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
+This project has given up GitHub.  ([See Software Freedom Conservancy's *Give Up  GitHub* site for details](https://GiveUpGitHub.org).)
 
-# bradtrainr
+You can now find this project at [the bradtrainr repository on Codeberg](https://codeberg.org/cjjdavies/bradtrainr) instead.
 
-<!-- badges: start -->
-<!-- badges: end -->
+Any use of this project's code by GitHub Copilot, past or present, is done without our permission.  We do not consent to GitHub's use of this project's code in Copilot.
 
-The goal of bradtrainr is to provide training in the use of R for
-analysis and visualisation of data.
+Join us; you can [give up GitHub](https://GiveUpGitHub.org) too!
 
-## Installation
-
-You can install the development version of bradtrainr from
-[GitHub](https://github.com/) with:
-
-``` r
-# install.packages("devtools")
-devtools::install_github("cjjdavies/bradtrainr")
-```
-
-To run this tutorial, type the following in the console window:
-
-``` r
-learnr::run_tutorial("tutorial1", package = "bradtrainr")
-```
-
-The tutorial may also be run from the Tutorial tab in the Environment
-pane (top right panel).
-
-This is a development version of the package.
+![Logo of the GiveUpGitHub campaign](https://sfconservancy.org/static/img/GiveUpGitHub.png)
